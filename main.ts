@@ -1,4 +1,5 @@
 let tiempo = 0
+let inicio = 0
 let game_started = false
 let puntA = 0
 let puntB = 0
@@ -7,7 +8,7 @@ basic.forever(function () {
     basic.pause(randint(1000, 5000))
     game_started = true
     basic.showIcon(IconNames.Heart)
-    tiempo = 0
+    inicio = input.runningTime()
     while (game_started) {
         if (input.pinIsPressed(TouchPin.P1)) {
             basic.showString("A")
@@ -21,10 +22,14 @@ basic.forever(function () {
             }
         }
     }
+    tiempo = input.runningTime() - inicio
+    basic.clearScreen()
+    basic.showNumber(tiempo / 1000)
     basic.pause(3000)
     basic.showNumber(puntA)
     basic.showString("A")
     basic.pause(1000)
+    basic.clearScreen()
     basic.showNumber(puntB)
     basic.showString("B")
     basic.pause(1000)
