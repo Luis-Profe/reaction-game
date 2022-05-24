@@ -1,5 +1,5 @@
 input.onButtonPressed(Button.A, function () {
-    if (puntA < 3 && puntB < 3) {
+    if (puntA < 4 && puntB < 4) {
         for (let index = 0; index <= 2; index++) {
             basic.showNumber(index + 1)
             basic.pause(1000)
@@ -10,11 +10,11 @@ input.onButtonPressed(Button.A, function () {
         basic.showIcon(IconNames.Heart)
         inicio = input.runningTime()
     }
-    if (puntA == 3) {
+    if (puntA == 4) {
         basic.showString("Ganador A")
         basic.showString("Game Over")
     }
-    if (puntB == 3) {
+    if (puntB == 4) {
         basic.showString("Ganador B")
         basic.showString("Game Over")
     }
