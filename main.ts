@@ -1,16 +1,27 @@
 input.onButtonPressed(Button.A, function () {
-    for (let index = 0; index <= 2; index++) {
-        basic.showNumber(index + 1)
-        basic.pause(1000)
+    if (puntA < 3 && puntB < 3) {
+        for (let index = 0; index <= 2; index++) {
+            basic.showNumber(index + 1)
+            basic.pause(1000)
+        }
+        basic.clearScreen()
+        basic.pause(randint(3000, 6000))
+        game_started = true
+        basic.showIcon(IconNames.Heart)
+        inicio = input.runningTime()
     }
-    basic.clearScreen()
-    basic.pause(randint(3000, 6000))
-    game_started = true
-    basic.showIcon(IconNames.Heart)
-    inicio = input.runningTime()
+    if (puntA == 3) {
+        basic.showString("Ganador A")
+        basic.showString("Game Over")
+    }
+    if (puntB == 3) {
+        basic.showString("Ganador B")
+        basic.showString("Game Over")
+    }
 })
 input.onPinPressed(TouchPin.P2, function () {
     if (game_started) {
+        game_started = false
         basic.showString("WinB")
         puntB += 1
         muestratiempo()
@@ -21,7 +32,6 @@ input.onPinPressed(TouchPin.P2, function () {
     muestrspuntos()
 })
 function muestrspuntos () {
-    game_started = false
     basic.pause(500)
     basic.clearScreen()
     basic.showString("JugA")
@@ -39,6 +49,7 @@ input.onButtonPressed(Button.AB, function () {
 })
 input.onPinPressed(TouchPin.P1, function () {
     if (game_started) {
+        game_started = false
         basic.showString("WinA")
         puntA += 1
         muestratiempo()
