@@ -1,79 +1,58 @@
 input.onButtonPressed(Button.A, function () {
-    basic.showLeds(`
-        # # # . .
-        # # . . .
-        . . . . .
-        . . . . .
-        . . . . .
-        `)
-    basic.showLeds(`
-        # # # # #
-        # # # # #
-        . . . . #
-        . . . . .
-        . . . . .
-        `)
-    basic.showLeds(`
-        # # # # #
-        # # # # #
-        # # # # #
-        # # # . .
-        . . . . .
-        `)
-    basic.showLeds(`
-        # # # # #
-        # # # # #
-        # # # # #
-        # # # # #
-        # # # # #
-        `)
+    for (let index = 0; index <= 2; index++) {
+        basic.showNumber(index + 1)
+        basic.pause(1000)
+    }
+    basic.clearScreen()
     basic.pause(randint(3000, 6000))
     game_started = true
     basic.showIcon(IconNames.Heart)
     inicio = input.runningTime()
 })
 input.onPinPressed(TouchPin.P2, function () {
-    if (!(game_started)) {
+    if (game_started) {
+        basic.showString("WinB")
+        puntB += 1
+        muestratiempo()
+    } else {
         basic.showString("A")
         puntA += 1
-        muestrspuntos()
-    } else {
-        basic.showString("B")
-        puntB += 1
-        muestrspuntos()
-        muestratiempo()
     }
+    muestrspuntos()
 })
 function muestrspuntos () {
     game_started = false
-    basic.clearScreen()
     basic.pause(500)
     basic.clearScreen()
     basic.showString("JugA")
     basic.showNumber(puntA)
     basic.pause(1000)
     basic.clearScreen()
-    basic.showString("Jug B")
+    basic.showString("JugB")
     basic.showNumber(puntB)
     basic.pause(1000)
     basic.clearScreen()
 }
+input.onButtonPressed(Button.AB, function () {
+    puntA = 0
+    puntB = 0
+})
 input.onPinPressed(TouchPin.P1, function () {
-    if (!(game_started)) {
+    if (game_started) {
+        basic.showString("WinA")
+        puntA += 1
+        muestratiempo()
+    } else {
         basic.showString("B")
         puntB += 1
-        muestrspuntos()
-    } else {
-        basic.showString("A")
-        puntA += 1
-        muestrspuntos()
-        muestratiempo()
     }
+    muestrspuntos()
 })
 function muestratiempo () {
     basic.clearScreen()
     tiempo = input.runningTime() - inicio
     basic.showNumber(Math.idiv(tiempo, 1000))
+    basic.showString("s")
     basic.pause(1000)
     basic.clearScreen()
 }
