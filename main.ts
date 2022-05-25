@@ -1,4 +1,4 @@
-input.onButtonPressed(Button.A, function () {
+input.onPinPressed(TouchPin.P0, function () {
     if (puntA < 4 && puntB < 4) {
         for (let index = 0; index <= 2; index++) {
             basic.showNumber(index + 1)
